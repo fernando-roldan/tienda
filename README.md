@@ -19,12 +19,13 @@ Los requerimientos para el lavantamiento del projecto son los siguientes:
 - php artisan migrate
 ## Precaucion en esta parte.
 
- Para la instalacion de las dependecias de React es necesario dirigirse a la carpeta de React que se encuentra en la misma carpeta Raíz, con en nombre de "react" 
- Aqui es donde se instalaran las dependencias de Node
+ Para la instalacion de las dependecias de React es necesario dirigirse a la carpeta de React que se encuentra en la misma carpeta Raíz, con en nombre de "react". 
+ Aqui es donde se instalaran las dependencias de Node.
+ Crear un archivo .env dentro de esta carpeta "react" se puede guiar por el .env.example solo debe comentar la linea que cuenta con una ruta local y descomentar la otra que es con la que funciona Laravel serve.
 
  - npm install
  - nvm install
-
+ - .env
 ## Acceso al Dasboard
 
 Para el acceso al Dasboard en la misma migracion de usuarios se encentra los datos para el acceso al dasboard del sitio
