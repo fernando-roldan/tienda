@@ -16,7 +16,6 @@ function ProductForm() {
     category_id: '',
     name: '',
     description: '',
-    image: '',
     price: '',
     stock: '',
   })
@@ -47,6 +46,35 @@ function ProductForm() {
     getCategories()
   }, [])
 
+  const onSubmit = event => {
+    event.preventDefault()
+    if(product.id) {
+      axiosClient.put(`/products/${product.id}`, product)
+        .then((result) => {
+          setNotification('Producto editado correctamente')
+          navigate('/admin/productos')
+        }).catch((err) => {
+          const response = err.response
+          if(response && response.status === 422) {
+            setErrors(response.data.errors)
+          }
+        });
+    } else {
+      
+      console.log(product)
+      axiosClient.post('/products', product)
+        .then((result) => {
+          setNotification('Producto creado correctamente')
+          //navigate('/admin/productos')
+        }).catch((err) => {
+          const response = err.response
+          if(response && response.status === 422) {
+            setErrors(response.data.errors)
+          }
+        });
+    }
+  }
+
   return (
     <>
       {product.id && <h1>Editar producto</h1>}
@@ -65,12 +93,12 @@ function ProductForm() {
           </div>
         }
         {!loading && (
-          <form className='row' onSubmit={onsubmit}>
-            <div className='col-6'>
+          <form className='row' onSubmit={onSubmit}>
+            <div className='col-6 my-2'>
               <input value={product.name} onChange={ev => setProduct({...product, name: ev.target.value})} placeholder='Nombre' />
             </div>
-            <div className='col-6'>
-              <select className='form-controler' value={product.category_id} onChange={ev => setProduct({...product, category_id: ev.target.value})} placeholder='Categorias'>
+            <div className='col-6 my-2'>
+              <select className='form-controler' value={categories.id} onChange={ev => setProduct({...product, category_id: ev.target.value})} placeholder='Categorias'>
                 <option value="">Categorias</option>
                 {
                   categories.map((categori) => (
@@ -79,6 +107,19 @@ function ProductForm() {
                 }
               </select>
             </div>
+            <div className="col-6 my-2">
+              <input value={product.description} onChange={ev => setProduct({...product, description: ev.target.value})} placeholder='descripcion' />
+            </div>
+            <div className="col-6 my-2">
+              <input type='number' value={product.price} onChange={ev => setProduct({...product, price: ev.target.value})} placeholder='$0.00' />
+            </div>
+            <div className="col-6 my-2">
+              <input type='number' value={product.stock} onChange={ev => setProduct({...product, stock: ev.target.value})} placeholder='stock' />
+            </div>
+            <div className='col-12'>
+              <button className='btns'>Guardar</button>
+            </div>
+            
           </form>
         )}
       </div>

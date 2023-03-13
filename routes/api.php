@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\EcommersController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/products', ProductController::class);
 });
 
-Route::get('/tienda', [ProductController::class, 'index']);
+Route::get('/tienda', [EcommersController::class, 'ecommers']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/signup', [AuthController::class, 'signup']);
 

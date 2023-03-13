@@ -7,7 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function GuestLayout() {
-    const {token} = useStateContext()
+    const {token, notification} = useStateContext()
 
     if(token) {
         
@@ -25,6 +25,7 @@ function GuestLayout() {
                 </Nav>
                 <Nav>
                   <Nav.Link href="/login">login</Nav.Link>
+                  <Nav.Link href="/carrito">carrito</Nav.Link>
                 </Nav>
               </Navbar.Collapse>
             </Container>
@@ -32,7 +33,11 @@ function GuestLayout() {
         <div className='bg-secondary-subtle'>
             <Outlet />
         </div>
-        
+        {notification &&
+            <div className='notification'>
+                {notification}
+            </div>
+        }
     </div>
   )
 }

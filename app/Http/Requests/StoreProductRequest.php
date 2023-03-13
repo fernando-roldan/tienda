@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Validator;
 
 class StoreProductRequest extends FormRequest
 {
@@ -25,9 +26,8 @@ class StoreProductRequest extends FormRequest
             'category_id' => 'required|integer',
             'name'  => 'required|string|max:150',
             'description' => 'required|string|max:255',
-            'image' => 'image|mimes:jpeg,png|max:3000',
-            'price' => 'required|float',
-            'stock' => 'required|integer'
+            'price' => 'required',
+            'stock' => 'required'
         ];
     }
 }

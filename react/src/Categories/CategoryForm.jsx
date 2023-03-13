@@ -44,15 +44,15 @@ function CategoryForm() {
         });
     } else {
       axiosClient.post('/categories', category)
-      .then((result) => {
-        setNotification('Categoria creada correctamente')
-        navigate('/admin/categorias')
-      }).catch((err) => {
-        const response = err.response
-        if(response && response.status === 422) {
-          setErrors(response.data.errors)
-        }
-      });
+        .then((result) => {
+          setNotification('Categoria creada correctamente')
+          navigate('/admin/categorias')
+        }).catch((err) => {
+          const response = err.response
+          if(response && response.status === 422) {
+            setErrors(response.data.errors)
+          }
+        });
     }
   }
   return (
