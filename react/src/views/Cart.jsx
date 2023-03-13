@@ -8,7 +8,7 @@ function Cart() {
 
   let product = JSON.parse(localStorage.getItem('carrito'))
 
-
+ 
   return (
     <div className="container my-2">
       <div className="row">
