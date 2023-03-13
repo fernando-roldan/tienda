@@ -21,7 +21,7 @@ export const ContextProvider = ({children}) => {
         _setNotification(message)
         setTimeout(() => {
             _setNotification('')
-        }, 5000)
+        }, 1500)
     }
 
     const setToken = (token) => {
@@ -38,7 +38,7 @@ export const ContextProvider = ({children}) => {
         _setCart(cart)
 
         if(cart) {
-            localStorage.setItem('carrito', [cart])
+            localStorage.setItem('carrito', JSON.stringify([cart]))
         } else {
             localStorage.removeItem('carrito')
         }
@@ -52,6 +52,7 @@ export const ContextProvider = ({children}) => {
             setToken,
             notification,
             setNotification,
+            cart,
             setCart
         }}>
 

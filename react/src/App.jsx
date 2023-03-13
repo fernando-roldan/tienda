@@ -24,30 +24,27 @@ function App() {
       .then(({ data }) => {
         setLoading(false)
         setProducts(data.data)
-        setCart(data.data)
       }).catch((err) => {
         setLoading(false)
       });
   }
 
-  const addToCart = () => {
-    /* const item = products
-    const items = products.find((item) => products.id === item.id)
-    if(item.id == products ) {
-       cart = {
-          id: item.id,
-          price: item.price + products.price,
-          stock: item.stock + products.stock
-        }
+  const addToCart = (id) => {
+    const item = products
+    const items = item.find((item) => item.id === id)
+
+    let addTo = {
+      id: items.id,
+      category: items.category.name,
+      description: items.description,
+      name: items.name,
+      price: items.price,
+      ammount: 1
     }
-    /* let product = 
-    setCart(cart)*/
-    //console.log(items)  */
-  }
-  
-  const onSubmint = event => {
-    event.preventDefault()
-    addToCart()
+    
+    setCart(addTo)
+
+    setNotification('Se agrego al carrito')
   }
 
   return (
@@ -68,7 +65,7 @@ function App() {
                       <Card.Text>
                         ${u.price}
                       </Card.Text>
-                      <Button onClick={onSubmint} variant="primary">Agregar</Button>
+                      <Button  onClick={addToCart.bind(this, u.id)} variant="primary">Agregar</Button>
                     </Card.Body>
                   </Card>
                 </div>
